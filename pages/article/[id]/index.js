@@ -16,7 +16,14 @@ const question = ({ question }) => {
 }
 
 export const getStaticProps = async (context) => {
-  const res = await fetch(`${server}/api/questions/${context.params.id}`)
+  const res = await fetch(`${server}/api/questions/${context.params.id}`,
+    {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': '*',
+      },
+    }
+  )
 
   const question = await res.json()
 
@@ -28,7 +35,14 @@ export const getStaticProps = async (context) => {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/questions`)
+  const res = await fetch(`${server}/api/questions`,
+    {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': '*',
+      },
+    }
+  )
 
   const questions = await res.json()
 

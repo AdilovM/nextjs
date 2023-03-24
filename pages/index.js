@@ -10,7 +10,14 @@ export default function Home({ questions }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/questions`)
+  const res = await fetch(`${server}/api/questions`,
+    {
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': '*',
+      },
+    }
+  )
   const questions = await res.json()
 
   return {
